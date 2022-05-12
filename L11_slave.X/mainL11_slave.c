@@ -28,6 +28,8 @@
 // CONSTANTES ------------------------------------------------------------------
 #define _XTAL_FREQ 1000000
 #define FLAG_SPI 0xFF
+#define INC_B PORTBbits.RB0     // Asignar identificador a RB0
+#define DEC_B PORTBbits.RB1     // Asignar identificador a RB1
 
 // VARIABLES -------------------------------------------------------------------
 char cont_master = 0;
@@ -40,16 +42,18 @@ void setup(void);
 // INTERRUPCIONES --------------------------------------------------------------
 void __interrupt() isr (void){
     if (PIR1bits.SSPIF){
-        
         val_temp = SSPBUF;
-        /*if (val_temporal == FLAG_SPI){  //revisa si es el dato de inicio
-            SSPBUF = 0x33;        // respondemos con un 0x33 - "ok"
-        }
-        if (val_temporal != FLAG_SPI){  // revisa si es un dato
-            PORTD = val_temporal;       // guardamos el dato en PORTD
-        }*/
-        PORTD = val_temp;
+        PORTD = val_temp;       // guardamos el dato en PORTD
+        SSPBUF = cont_master;
         PIR1bits.SSPIF = 0;             // Limpiamos bandera de interrupci n?
+    }
+    
+    if(INTCONbits.RBIF){        // Evaluar bandera de interrupción del PORTB
+        if(!INC_B)          // Evaluar boton de incremento
+            cont_master++;            // Aumentar PORTA si el boton de incremento se presionó 
+        else if (!DEC_B)       // Evaluar boton de decremento (solo si no se presionó el de incrmento)
+            cont_master--;            // Disminuir PORTA si el boton de decremento se presionó
+        INTCONbits.RBIF = 0;    // Limpiar bandera de interrupción del PORTB
     }
     return;
 }
@@ -59,6 +63,7 @@ void main(void) {
     setup();
     while(1){        
         // Envio y recepcion de datos en maestro
+        //PORTD = cont_master;
     }
     return;
 }
@@ -67,14 +72,17 @@ void setup(void){
     ANSEL = 0;
     ANSELH = 0;
     
-    TRISB = 0;
-    PORTB = 0;
-    
     TRISD = 0;
     PORTD = 0;
     
     TRISA = 0b00100001;
     PORTA = 0;
+    
+    TRISBbits.TRISB0 = 1;       // RB0 como entrada
+    TRISBbits.TRISB1 = 1;       // RB1 como entrada
+    OPTION_REGbits.nRBPU = 0;   // Habilitar resistencias pull-up del PORTB
+    WPUBbits.WPUB0 = 1;         // Habilitar pull_up para RB0
+    WPUBbits.WPUB1 = 1;         // Habilitar pull_up para RB1 
     
     OSCCONbits.IRCF = 0b100;    // 1MHz
     OSCCONbits.SCS = 1;         // Reloj interno
@@ -96,4 +104,8 @@ void setup(void){
     PIE1bits.SSPIE = 1;         // Habilitamos int. de SPI
     INTCONbits.PEIE = 1;
     INTCONbits.GIE = 1;
+    INTCONbits.RBIE = 1;        // Habilitar interrupciones del PORTB
+    IOCBbits.IOCB0 = 1;         // Habilitar interrpción On_change de RB0
+    IOCBbits.IOCB1 = 1;         // Habilitar interrpción On_change de RB1
+    INTCONbits.RBIF = 0;        // Limpiar bandera de interrupción del PORTB
 }

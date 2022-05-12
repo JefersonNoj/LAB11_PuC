@@ -47,7 +47,7 @@ void __interrupt() isr (void){
     if(PIR1bits.ADIF){              // Verificar si ocurrió interrupción del ADC
         if(ADCON0bits.CHS == 0){    // Verificar que se esta leyendo el AN0
             POT_valor = ADRESH;     // Guardar el resultado de la conversión
-            PORTB = ADRESH;         // Mostrar resultado en el PORTD
+            PORTD = ADRESH;         // Mostrar resultado en el PORTD
         }
         PIR1bits.ADIF = 0;          // Limpiar bandera de interrupción del ADC
     }
@@ -67,18 +67,11 @@ void main(void) {
         __delay_ms(10);         // Delay para que el PIC pueda detectar el cambio en el pin
         PORTAbits.RA7 = 0;      // habilitamos nuevamente el escalvo
 
-        // Enviamos el dato 0x55 
+        // Enviar dato
         SSPBUF = POT_valor;   // Cargamos valor del contador al buffer
-        while(!SSPSTATbits.BF){}// Esperamos a que termine el envio   
-
-        /* cambio en el selector (SS) para generar respuesta del pic
-        PORTAbits.RA7 = 1;      // Deshabilitamos el ss del esclavo
-        __delay_ms(10);         // Delay para que el PIC pueda detectar el cambio en el pin
-        PORTAbits.RA7 = 0;      // habilitamos nuevamente el escalvo
-
-        SSPBUF = FLAG_SPI;      // Master inicia la comunicación y prende el clock
-        while(!SSPSTATbits.BF){}// Esperamos a que se reciba un dato
-        PORTD = SSPBUF;         // Mostramos dato recibido en PORTD*/
+        while(!SSPSTATbits.BF){}// Esperamos a que termine el envio
+        PORTB = SSPBUF;         // Mostramos dato recibido en PORTD
+        
         __delay_ms(1000);       // Enviamos y pedimos datos cada 1 segundo
     }
     return;

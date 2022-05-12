@@ -2677,7 +2677,7 @@ void __attribute__((picinterrupt(("")))) isr (void){
     if(PIR1bits.ADIF){
         if(ADCON0bits.CHS == 0){
             POT_valor = ADRESH;
-            PORTB = ADRESH;
+            PORTD = ADRESH;
         }
         PIR1bits.ADIF = 0;
     }
@@ -2700,7 +2700,8 @@ void main(void) {
 
         SSPBUF = POT_valor;
         while(!SSPSTATbits.BF){}
-# 82 "mainL11_master.c"
+        PORTB = SSPBUF;
+
         _delay((unsigned long)((1000)*(1000000/4000.0)));
     }
     return;

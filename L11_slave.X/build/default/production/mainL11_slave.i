@@ -2653,13 +2653,7 @@ extern __bank0 __bit __timeout;
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c90\\stdint.h" 1 3
 # 26 "mainL11_slave.c" 2
-
-
-
-
-
-
-
+# 35 "mainL11_slave.c"
 char cont_master = 0;
 char cont_slave = 0xFF;
 char val_temp = 0;
@@ -2670,16 +2664,18 @@ void setup(void);
 
 void __attribute__((picinterrupt(("")))) isr (void){
     if (PIR1bits.SSPIF){
-
         val_temp = SSPBUF;
-
-
-
-
-
-
         PORTD = val_temp;
+        SSPBUF = cont_master;
         PIR1bits.SSPIF = 0;
+    }
+
+    if(INTCONbits.RBIF){
+        if(!PORTBbits.RB0)
+            cont_master++;
+        else if (!PORTBbits.RB1)
+            cont_master--;
+        INTCONbits.RBIF = 0;
     }
     return;
 }
@@ -2689,6 +2685,7 @@ void main(void) {
     setup();
     while(1){
 
+
     }
     return;
 }
@@ -2697,14 +2694,17 @@ void setup(void){
     ANSEL = 0;
     ANSELH = 0;
 
-    TRISB = 0;
-    PORTB = 0;
-
     TRISD = 0;
     PORTD = 0;
 
     TRISA = 0b00100001;
     PORTA = 0;
+
+    TRISBbits.TRISB0 = 1;
+    TRISBbits.TRISB1 = 1;
+    OPTION_REGbits.nRBPU = 0;
+    WPUBbits.WPUB0 = 1;
+    WPUBbits.WPUB1 = 1;
 
     OSCCONbits.IRCF = 0b100;
     OSCCONbits.SCS = 1;
@@ -2726,4 +2726,8 @@ void setup(void){
     PIE1bits.SSPIE = 1;
     INTCONbits.PEIE = 1;
     INTCONbits.GIE = 1;
+    INTCONbits.RBIE = 1;
+    IOCBbits.IOCB0 = 1;
+    IOCBbits.IOCB1 = 1;
+    INTCONbits.RBIF = 0;
 }

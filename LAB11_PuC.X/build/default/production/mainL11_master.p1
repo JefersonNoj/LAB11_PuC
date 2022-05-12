@@ -38,9 +38,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1239
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 1239: extern volatile unsigned char ADRESH __attribute__((address(0x01E)));
 [v _ADRESH `Vuc ~T0 @X0 0 e@30 ]
-"229
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 229: extern volatile unsigned char PORTB __attribute__((address(0x006)));
-[v _PORTB `Vuc ~T0 @X0 0 e@6 ]
+"353
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 353: extern volatile unsigned char PORTD __attribute__((address(0x008)));
+[v _PORTD `Vuc ~T0 @X0 0 e@8 ]
 [p mainexit ]
 "39 mainL11_master.c
 [; ;mainL11_master.c: 39: void setup(void);
@@ -98,6 +98,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "2232
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 2232: extern volatile SSPSTATbits_t SSPSTATbits __attribute__((address(0x094)));
 [v _SSPSTATbits `VS81 ~T0 @X0 0 e@148 ]
+"229
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 229: extern volatile unsigned char PORTB __attribute__((address(0x006)));
+[v _PORTB `Vuc ~T0 @X0 0 e@6 ]
 "3388
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 3388: extern volatile unsigned char ANSEL __attribute__((address(0x188)));
 [v _ANSEL `Vuc ~T0 @X0 0 e@392 ]
@@ -110,9 +113,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1603
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 1603: extern volatile unsigned char TRISD __attribute__((address(0x088)));
 [v _TRISD `Vuc ~T0 @X0 0 e@136 ]
-"353
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 353: extern volatile unsigned char PORTD __attribute__((address(0x008)));
-[v _PORTD `Vuc ~T0 @X0 0 e@8 ]
 "1417
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 1417: extern volatile unsigned char TRISA __attribute__((address(0x085)));
 [v _TRISA `Vuc ~T0 @X0 0 e@133 ]
@@ -504,8 +504,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mainL11_master.c: 49:             POT_valor = ADRESH;
 [e = _POT_valor -> _ADRESH `uc ]
 "50
-[; ;mainL11_master.c: 50:             PORTB = ADRESH;
-[e = _PORTB _ADRESH ]
+[; ;mainL11_master.c: 50:             PORTD = ADRESH;
+[e = _PORTD _ADRESH ]
 "51
 [; ;mainL11_master.c: 51:         }
 }
@@ -566,116 +566,119 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 147 ]
 [e $ ! != -> . . _SSPSTATbits 0 0 `i -> 0 `i 148  ]
 [e :U 149 ]
-"82
-[; ;mainL11_master.c: 82:         _delay((unsigned long)((1000)*(1000000/4000.0)));
+"73
+[; ;mainL11_master.c: 73:         PORTB = SSPBUF;
+[e = _PORTB _SSPBUF ]
+"75
+[; ;mainL11_master.c: 75:         _delay((unsigned long)((1000)*(1000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-"83
-[; ;mainL11_master.c: 83:     }
+"76
+[; ;mainL11_master.c: 76:     }
 }
 [e :U 143 ]
 [e $U 144  ]
 [e :U 145 ]
-"84
-[; ;mainL11_master.c: 84:     return;
+"77
+[; ;mainL11_master.c: 77:     return;
 [e $UE 142  ]
-"85
-[; ;mainL11_master.c: 85: }
+"78
+[; ;mainL11_master.c: 78: }
 [e :UE 142 ]
 }
-"87
-[; ;mainL11_master.c: 87: void setup(void){
+"80
+[; ;mainL11_master.c: 80: void setup(void){
 [v _setup `(v ~T0 @X0 1 ef ]
 {
 [e :U _setup ]
 [f ]
-"88
-[; ;mainL11_master.c: 88:     ANSEL = 0b1;
+"81
+[; ;mainL11_master.c: 81:     ANSEL = 0b1;
 [e = _ANSEL -> -> 1 `i `uc ]
-"89
-[; ;mainL11_master.c: 89:     ANSELH = 0;
+"82
+[; ;mainL11_master.c: 82:     ANSELH = 0;
 [e = _ANSELH -> -> 0 `i `uc ]
-"91
-[; ;mainL11_master.c: 91:     TRISB = 0;
+"84
+[; ;mainL11_master.c: 84:     TRISB = 0;
 [e = _TRISB -> -> 0 `i `uc ]
-"92
-[; ;mainL11_master.c: 92:     PORTB = 0;
+"85
+[; ;mainL11_master.c: 85:     PORTB = 0;
 [e = _PORTB -> -> 0 `i `uc ]
-"94
-[; ;mainL11_master.c: 94:     TRISD = 0;
+"87
+[; ;mainL11_master.c: 87:     TRISD = 0;
 [e = _TRISD -> -> 0 `i `uc ]
-"95
-[; ;mainL11_master.c: 95:     PORTD = 0;
+"88
+[; ;mainL11_master.c: 88:     PORTD = 0;
 [e = _PORTD -> -> 0 `i `uc ]
-"97
-[; ;mainL11_master.c: 97:     TRISA = 0b1;
+"90
+[; ;mainL11_master.c: 90:     TRISA = 0b1;
 [e = _TRISA -> -> 1 `i `uc ]
-"98
-[; ;mainL11_master.c: 98:     PORTA = 0;
+"91
+[; ;mainL11_master.c: 91:     PORTA = 0;
 [e = _PORTA -> -> 0 `i `uc ]
-"100
-[; ;mainL11_master.c: 100:     OSCCONbits.IRCF = 0b100;
+"93
+[; ;mainL11_master.c: 93:     OSCCONbits.IRCF = 0b100;
 [e = . . _OSCCONbits 0 4 -> -> 4 `i `uc ]
-"101
-[; ;mainL11_master.c: 101:     OSCCONbits.SCS = 1;
+"94
+[; ;mainL11_master.c: 94:     OSCCONbits.SCS = 1;
 [e = . . _OSCCONbits 0 0 -> -> 1 `i `uc ]
-"104
-[; ;mainL11_master.c: 104:     ADCON0bits.ADCS = 0b01;
+"97
+[; ;mainL11_master.c: 97:     ADCON0bits.ADCS = 0b01;
 [e = . . _ADCON0bits 0 3 -> -> 1 `i `uc ]
-"105
-[; ;mainL11_master.c: 105:     ADCON1bits.VCFG0 = 0;
+"98
+[; ;mainL11_master.c: 98:     ADCON1bits.VCFG0 = 0;
 [e = . . _ADCON1bits 0 1 -> -> 0 `i `uc ]
-"106
-[; ;mainL11_master.c: 106:     ADCON1bits.VCFG1 = 0;
+"99
+[; ;mainL11_master.c: 99:     ADCON1bits.VCFG1 = 0;
 [e = . . _ADCON1bits 0 2 -> -> 0 `i `uc ]
-"107
-[; ;mainL11_master.c: 107:     ADCON0bits.CHS = 0b0000;
+"100
+[; ;mainL11_master.c: 100:     ADCON0bits.CHS = 0b0000;
 [e = . . _ADCON0bits 0 2 -> -> 0 `i `uc ]
-"108
-[; ;mainL11_master.c: 108:     ADCON1bits.ADFM = 0;
+"101
+[; ;mainL11_master.c: 101:     ADCON1bits.ADFM = 0;
 [e = . . _ADCON1bits 0 4 -> -> 0 `i `uc ]
-"109
-[; ;mainL11_master.c: 109:     ADCON0bits.ADON = 1;
+"102
+[; ;mainL11_master.c: 102:     ADCON0bits.ADON = 1;
 [e = . . _ADCON0bits 0 0 -> -> 1 `i `uc ]
-"110
-[; ;mainL11_master.c: 110:     _delay((unsigned long)((40)*(1000000/4000000.0)));
+"103
+[; ;mainL11_master.c: 103:     _delay((unsigned long)((40)*(1000000/4000000.0)));
 [e ( __delay (1 -> * -> -> 40 `i `d / -> -> 1000000 `l `d .4000000.0 `ul ]
-"115
-[; ;mainL11_master.c: 115:     TRISC = 0b00010000;
+"108
+[; ;mainL11_master.c: 108:     TRISC = 0b00010000;
 [e = _TRISC -> -> 16 `i `uc ]
-"116
-[; ;mainL11_master.c: 116:     PORTC = 0;
+"109
+[; ;mainL11_master.c: 109:     PORTC = 0;
 [e = _PORTC -> -> 0 `i `uc ]
-"119
-[; ;mainL11_master.c: 119:     SSPCONbits.SSPM = 0b0000;
+"112
+[; ;mainL11_master.c: 112:     SSPCONbits.SSPM = 0b0000;
 [e = . . _SSPCONbits 0 0 -> -> 0 `i `uc ]
-"120
-[; ;mainL11_master.c: 120:     SSPCONbits.CKP = 0;
+"113
+[; ;mainL11_master.c: 113:     SSPCONbits.CKP = 0;
 [e = . . _SSPCONbits 0 1 -> -> 0 `i `uc ]
-"121
-[; ;mainL11_master.c: 121:     SSPCONbits.SSPEN = 1;
+"114
+[; ;mainL11_master.c: 114:     SSPCONbits.SSPEN = 1;
 [e = . . _SSPCONbits 0 2 -> -> 1 `i `uc ]
-"123
-[; ;mainL11_master.c: 123:     SSPSTATbits.CKE = 1;
+"116
+[; ;mainL11_master.c: 116:     SSPSTATbits.CKE = 1;
 [e = . . _SSPSTATbits 0 6 -> -> 1 `i `uc ]
-"124
-[; ;mainL11_master.c: 124:     SSPSTATbits.SMP = 1;
+"117
+[; ;mainL11_master.c: 117:     SSPSTATbits.SMP = 1;
 [e = . . _SSPSTATbits 0 7 -> -> 1 `i `uc ]
-"125
-[; ;mainL11_master.c: 125:     SSPBUF = cont_master;
+"118
+[; ;mainL11_master.c: 118:     SSPBUF = cont_master;
 [e = _SSPBUF -> _cont_master `uc ]
-"128
-[; ;mainL11_master.c: 128:     INTCONbits.GIE = 1;
+"121
+[; ;mainL11_master.c: 121:     INTCONbits.GIE = 1;
 [e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
-"129
-[; ;mainL11_master.c: 129:     INTCONbits.PEIE = 1;
+"122
+[; ;mainL11_master.c: 122:     INTCONbits.PEIE = 1;
 [e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
-"130
-[; ;mainL11_master.c: 130:     PIE1bits.ADIE = 1;
+"123
+[; ;mainL11_master.c: 123:     PIE1bits.ADIE = 1;
 [e = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
-"131
-[; ;mainL11_master.c: 131:     PIR1bits.ADIF = 0;
+"124
+[; ;mainL11_master.c: 124:     PIR1bits.ADIF = 0;
 [e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
-"132
-[; ;mainL11_master.c: 132: }
+"125
+[; ;mainL11_master.c: 125: }
 [e :UE 150 ]
 }

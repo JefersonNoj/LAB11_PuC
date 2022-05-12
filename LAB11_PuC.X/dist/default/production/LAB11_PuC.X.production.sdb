@@ -15,7 +15,7 @@
 [v _isr isr `II(v  1 e 1 0 ]
 "59
 [v _main main `(v  1 e 1 0 ]
-"87
+"80
 [v _setup setup `(v  1 e 1 0 ]
 "167 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
@@ -200,12 +200,12 @@
 "59
 [v _main main `(v  1 e 1 0 ]
 {
-"85
+"78
 } 0
-"87
+"80
 [v _setup setup `(v  1 e 1 0 ]
 {
-"132
+"125
 } 0
 "42
 [v _isr isr `II(v  1 e 1 0 ]
