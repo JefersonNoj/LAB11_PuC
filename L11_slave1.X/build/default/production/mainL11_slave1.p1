@@ -50,12 +50,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3450
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 3450: extern volatile unsigned char ANSELH __attribute__((address(0x189)));
 [v _ANSELH `Vuc ~T0 @X0 0 e@393 ]
-"1603
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 1603: extern volatile unsigned char TRISD __attribute__((address(0x088)));
-[v _TRISD `Vuc ~T0 @X0 0 e@136 ]
-"353
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 353: extern volatile unsigned char PORTD __attribute__((address(0x008)));
-[v _PORTD `Vuc ~T0 @X0 0 e@8 ]
 "1417
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC16Fxxx_DFP/1.3.42/xc8\pic\include\proc\pic16f887.h: 1417: extern volatile unsigned char TRISA __attribute__((address(0x085)));
 [v _TRISA `Vuc ~T0 @X0 0 e@133 ]
@@ -524,154 +518,148 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mainL11_slave1.c: 67:     while(1){
 [e :U 142 ]
 {
-"70
-[; ;mainL11_slave1.c: 70:     }
+"69
+[; ;mainL11_slave1.c: 69:     }
 }
 [e :U 141 ]
 [e $U 142  ]
 [e :U 143 ]
-"71
-[; ;mainL11_slave1.c: 71:     return;
+"70
+[; ;mainL11_slave1.c: 70:     return;
 [e $UE 140  ]
-"72
-[; ;mainL11_slave1.c: 72: }
+"71
+[; ;mainL11_slave1.c: 71: }
 [e :UE 140 ]
 }
-"74
-[; ;mainL11_slave1.c: 74: void setup(void){
+"73
+[; ;mainL11_slave1.c: 73: void setup(void){
 [v _setup `(v ~T0 @X0 1 ef ]
 {
 [e :U _setup ]
 [f ]
-"75
-[; ;mainL11_slave1.c: 75:     ANSEL = 0;
+"74
+[; ;mainL11_slave1.c: 74:     ANSEL = 0;
 [e = _ANSEL -> -> 0 `i `uc ]
-"76
-[; ;mainL11_slave1.c: 76:     ANSELH = 0;
+"75
+[; ;mainL11_slave1.c: 75:     ANSELH = 0;
 [e = _ANSELH -> -> 0 `i `uc ]
+"77
+[; ;mainL11_slave1.c: 77:     TRISA = 0b00100000;
+[e = _TRISA -> -> 32 `i `uc ]
 "78
-[; ;mainL11_slave1.c: 78:     TRISD = 0;
-[e = _TRISD -> -> 0 `i `uc ]
-"79
-[; ;mainL11_slave1.c: 79:     PORTD = 0;
-[e = _PORTD -> -> 0 `i `uc ]
-"81
-[; ;mainL11_slave1.c: 81:     TRISA = 0b00100001;
-[e = _TRISA -> -> 33 `i `uc ]
-"82
-[; ;mainL11_slave1.c: 82:     PORTA = 0;
+[; ;mainL11_slave1.c: 78:     PORTA = 0;
 [e = _PORTA -> -> 0 `i `uc ]
-"84
-[; ;mainL11_slave1.c: 84:     OSCCONbits.IRCF = 0b100;
+"80
+[; ;mainL11_slave1.c: 80:     OSCCONbits.IRCF = 0b100;
 [e = . . _OSCCONbits 0 4 -> -> 4 `i `uc ]
-"85
-[; ;mainL11_slave1.c: 85:     OSCCONbits.SCS = 1;
+"81
+[; ;mainL11_slave1.c: 81:     OSCCONbits.SCS = 1;
 [e = . . _OSCCONbits 0 0 -> -> 1 `i `uc ]
-"88
-[; ;mainL11_slave1.c: 88:     TRISCbits.TRISC2 = 1;
+"84
+[; ;mainL11_slave1.c: 84:     TRISCbits.TRISC2 = 1;
 [e = . . _TRISCbits 0 2 -> -> 1 `i `uc ]
-"89
-[; ;mainL11_slave1.c: 89:     PR2 = 61;
+"85
+[; ;mainL11_slave1.c: 85:     PR2 = 61;
 [e = _PR2 -> -> 61 `i `uc ]
-"92
-[; ;mainL11_slave1.c: 92:     CCP1CON = 0;
+"88
+[; ;mainL11_slave1.c: 88:     CCP1CON = 0;
 [e = _CCP1CON -> -> 0 `i `uc ]
-"93
-[; ;mainL11_slave1.c: 93:     CCP1CONbits.P1M = 0;
+"89
+[; ;mainL11_slave1.c: 89:     CCP1CONbits.P1M = 0;
 [e = . . _CCP1CONbits 0 2 -> -> 0 `i `uc ]
-"94
-[; ;mainL11_slave1.c: 94:     CCP1CONbits.CCP1M = 0b1100;
+"90
+[; ;mainL11_slave1.c: 90:     CCP1CONbits.CCP1M = 0b1100;
 [e = . . _CCP1CONbits 0 0 -> -> 12 `i `uc ]
-"95
-[; ;mainL11_slave1.c: 95:     CCPR1L = 63>>2;
+"91
+[; ;mainL11_slave1.c: 91:     CCPR1L = 63>>2;
 [e = _CCPR1L -> >> -> 63 `i -> 2 `i `uc ]
-"96
-[; ;mainL11_slave1.c: 96:     CCP1CONbits.DC1B = 63 & 0b11;
+"92
+[; ;mainL11_slave1.c: 92:     CCP1CONbits.DC1B = 63 & 0b11;
 [e = . . _CCP1CONbits 0 1 -> & -> 63 `i -> 3 `i `uc ]
-"99
-[; ;mainL11_slave1.c: 99:     PIR1bits.TMR2IF = 0;
+"95
+[; ;mainL11_slave1.c: 95:     PIR1bits.TMR2IF = 0;
 [e = . . _PIR1bits 0 1 -> -> 0 `i `uc ]
-"100
-[; ;mainL11_slave1.c: 100:     T2CONbits.T2CKPS = 0b11;
+"96
+[; ;mainL11_slave1.c: 96:     T2CONbits.T2CKPS = 0b11;
 [e = . . _T2CONbits 0 0 -> -> 3 `i `uc ]
-"101
-[; ;mainL11_slave1.c: 101:     T2CONbits.TMR2ON = 1;
+"97
+[; ;mainL11_slave1.c: 97:     T2CONbits.TMR2ON = 1;
 [e = . . _T2CONbits 0 1 -> -> 1 `i `uc ]
-"102
-[; ;mainL11_slave1.c: 102:     while(!PIR1bits.TMR2IF);
+"98
+[; ;mainL11_slave1.c: 98:     while(!PIR1bits.TMR2IF);
 [e $U 145  ]
 [e :U 146 ]
 [e :U 145 ]
 [e $ ! != -> . . _PIR1bits 0 1 `i -> 0 `i 146  ]
 [e :U 147 ]
-"103
-[; ;mainL11_slave1.c: 103:     PIR1bits.TMR2IF = 0;
+"99
+[; ;mainL11_slave1.c: 99:     PIR1bits.TMR2IF = 0;
 [e = . . _PIR1bits 0 1 -> -> 0 `i `uc ]
-"105
-[; ;mainL11_slave1.c: 105:     TRISCbits.TRISC2 = 0;
+"101
+[; ;mainL11_slave1.c: 101:     TRISCbits.TRISC2 = 0;
 [e = . . _TRISCbits 0 2 -> -> 0 `i `uc ]
-"109
-[; ;mainL11_slave1.c: 109:     TRISC = 0b00011000;
+"105
+[; ;mainL11_slave1.c: 105:     TRISC = 0b00011000;
 [e = _TRISC -> -> 24 `i `uc ]
-"110
-[; ;mainL11_slave1.c: 110:     PORTC = 0;
+"106
+[; ;mainL11_slave1.c: 106:     PORTC = 0;
 [e = _PORTC -> -> 0 `i `uc ]
-"113
-[; ;mainL11_slave1.c: 113:     SSPCONbits.SSPM = 0b0100;
+"109
+[; ;mainL11_slave1.c: 109:     SSPCONbits.SSPM = 0b0100;
 [e = . . _SSPCONbits 0 0 -> -> 4 `i `uc ]
-"114
-[; ;mainL11_slave1.c: 114:     SSPCONbits.CKP = 0;
+"110
+[; ;mainL11_slave1.c: 110:     SSPCONbits.CKP = 0;
 [e = . . _SSPCONbits 0 1 -> -> 0 `i `uc ]
-"115
-[; ;mainL11_slave1.c: 115:     SSPCONbits.SSPEN = 1;
+"111
+[; ;mainL11_slave1.c: 111:     SSPCONbits.SSPEN = 1;
 [e = . . _SSPCONbits 0 2 -> -> 1 `i `uc ]
-"117
-[; ;mainL11_slave1.c: 117:     SSPSTATbits.CKE = 1;
+"113
+[; ;mainL11_slave1.c: 113:     SSPSTATbits.CKE = 1;
 [e = . . _SSPSTATbits 0 6 -> -> 1 `i `uc ]
-"118
-[; ;mainL11_slave1.c: 118:     SSPSTATbits.SMP = 0;
+"114
+[; ;mainL11_slave1.c: 114:     SSPSTATbits.SMP = 0;
 [e = . . _SSPSTATbits 0 7 -> -> 0 `i `uc ]
-"120
-[; ;mainL11_slave1.c: 120:     PIR1bits.SSPIF = 0;
+"116
+[; ;mainL11_slave1.c: 116:     PIR1bits.SSPIF = 0;
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-"121
-[; ;mainL11_slave1.c: 121:     PIE1bits.SSPIE = 1;
+"117
+[; ;mainL11_slave1.c: 117:     PIE1bits.SSPIE = 1;
 [e = . . _PIE1bits 0 3 -> -> 1 `i `uc ]
-"122
-[; ;mainL11_slave1.c: 122:     INTCONbits.PEIE = 1;
+"118
+[; ;mainL11_slave1.c: 118:     INTCONbits.PEIE = 1;
 [e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
-"123
-[; ;mainL11_slave1.c: 123:     INTCONbits.GIE = 1;
+"119
+[; ;mainL11_slave1.c: 119:     INTCONbits.GIE = 1;
 [e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
-"125
-[; ;mainL11_slave1.c: 125:     return;
+"121
+[; ;mainL11_slave1.c: 121:     return;
 [e $UE 144  ]
-"126
-[; ;mainL11_slave1.c: 126: }
+"122
+[; ;mainL11_slave1.c: 122: }
 [e :UE 144 ]
 }
-"129
-[; ;mainL11_slave1.c: 129: unsigned short map(uint8_t x, uint8_t x0, uint8_t x1,
+"125
+[; ;mainL11_slave1.c: 125: unsigned short map(uint8_t x, uint8_t x0, uint8_t x1,
 [v _map `(us ~T0 @X0 1 ef5`uc`uc`uc`us`us ]
-"130
-[; ;mainL11_slave1.c: 130:             unsigned short y0, unsigned short y1){
+"126
+[; ;mainL11_slave1.c: 126:             unsigned short y0, unsigned short y1){
 {
 [e :U _map ]
-"129
-[; ;mainL11_slave1.c: 129: unsigned short map(uint8_t x, uint8_t x0, uint8_t x1,
+"125
+[; ;mainL11_slave1.c: 125: unsigned short map(uint8_t x, uint8_t x0, uint8_t x1,
 [v _x `uc ~T0 @X0 1 r1 ]
 [v _x0 `uc ~T0 @X0 1 r2 ]
 [v _x1 `uc ~T0 @X0 1 r3 ]
-"130
-[; ;mainL11_slave1.c: 130:             unsigned short y0, unsigned short y1){
+"126
+[; ;mainL11_slave1.c: 126:             unsigned short y0, unsigned short y1){
 [v _y0 `us ~T0 @X0 1 r4 ]
 [v _y1 `us ~T0 @X0 1 r5 ]
 [f ]
-"131
-[; ;mainL11_slave1.c: 131:     return (unsigned short)(y0+((float)(y1-y0)/(x1-x0))*(x-x0));
+"127
+[; ;mainL11_slave1.c: 127:     return (unsigned short)(y0+((float)(y1-y0)/(x1-x0))*(x-x0));
 [e ) -> + -> -> _y0 `ui `f * / -> - -> _y1 `ui -> _y0 `ui `f -> - -> _x1 `i -> _x0 `i `f -> - -> _x `i -> _x0 `i `f `us ]
 [e $UE 148  ]
-"132
-[; ;mainL11_slave1.c: 132: }
+"128
+[; ;mainL11_slave1.c: 128: }
 [e :UE 148 ]
 }

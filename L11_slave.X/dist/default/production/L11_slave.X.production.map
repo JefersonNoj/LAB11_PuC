@@ -5,9 +5,9 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.35\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\L11_slave.X.production.sym \
   --cmf=dist/default/production\L11_slave.X.production.cmf -z -Q16F887 \
-  -oC:\Users\usuario\AppData\Local\Temp\xcAsrd8.4 --defsym=__MPLAB_BUILD=1 \
+  -oC:\Users\usuario\AppData\Local\Temp\xcAso7g.4 --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/L11_slave.X.production.map \
-  --md=C:\Users\usuario\AppData\Local\Temp\xcAsrd8.dat -E1 \
+  --md=C:\Users\usuario\AppData\Local\Temp\xcAso7g.dat -E1 \
   -ver=XC8 Compiler --acfsm=1493 -ACODE=00h-07FFhx4 -ASTRCODE=00h-01FFFh \
   -ASTRING=00h-0FFhx32 -ACONST=00h-0FFhx32 -AENTRY=00h-0FFhx32 \
   -ACOMMON=070h-07Fh -ABANK0=020h-06Fh -ABANK1=0A0h-0EFh \
@@ -19,7 +19,7 @@ Linker command line:
   -AEEDATA=00h-0FFh/02100h -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 \
   -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 \
   -preset_vec=00h,intentry=04h,init,end_init -ppowerup=CODE -pcinit=CODE \
-  -pfunctab=ENTRY -k C:\Users\usuario\AppData\Local\Temp\xcAsrd8.o \
+  -pfunctab=ENTRY -k C:\Users\usuario\AppData\Local\Temp\xcAso7g.o \
   dist/default/production\L11_slave.X.production.o 
 
 Object code version is 3.11
@@ -29,7 +29,7 @@ Machine type is 16F887
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\usuario\AppData\Local\Temp\xcAsrd8.o
+C:\Users\usuario\AppData\Local\Temp\xcAso7g.o
                 end_init                              C        C        3        8       0
                 reset_vec                             0        0        3        0       0
                 config                             2007     2007        2        0       4
@@ -39,9 +39,9 @@ dist/default/production\L11_slave.X.production.o
                 intentry                              4        4        8        8       0
                 config                             2007     2007        2        0       4
                 idloc                              2000     2000        4        0       5
-                text2                                4F       4F       28        8       0
-                text1                                16       16       39        8       0
-                maintext                             77       77        9        8       0
+                text2                                49       49       28        8       0
+                text1                                16       16       33        8       0
+                maintext                             71       71        9        8       0
                 cstackCOMMON                         73       73        3       70       1
                 bssCOMMON                            70       70        3       70       1
 
@@ -51,9 +51,9 @@ TOTAL           Name                               Link     Load   Length     Sp
                 cinit                                 F        F        7         0
                 intentry                              4        4        8         0
                 reset_vec                             0        0        3         0
-                text2                                4F       4F       28         0
-                text1                                16       16       39         0
-                maintext                             77       77        9         0
+                text2                                49       49       28         0
+                text1                                16       16       33         0
+                maintext                             71       71        9         0
 
         CLASS   STRCODE        
 
@@ -103,7 +103,7 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class     Delta
 
                 reset_vec                      000000  000003  000003         0       0  CODE        2
-                intentry                       000004  00007C  000080         8       0  CODE        2
+                intentry                       000004  000076  00007A         8       0  CODE        2
                 bssCOMMON                      000070  000006  000076        70       1  COMMON      1
 
 
@@ -115,13 +115,13 @@ UNUSED ADDRESS RANGES
         BANK2            0110-016F             60           1
         BANK3            0190-01EF             60           1
         CODE             0003-0003              1           2
-                         0080-1FFF            800
+                         007A-1FFF            800
         COMMON           0076-007D              8           1
         CONST            0003-0003              1           2
-                         0080-1FFF            100
+                         007A-1FFF            100
         EEDATA           2100-21FF            100           2
         ENTRY            0003-0003              1           2
-                         0080-1FFF            100
+                         007A-1FFF            100
         RAM              0020-006F             50           1
                          00A0-00EF             50
                          0110-016F             60
@@ -131,9 +131,9 @@ UNUSED ADDRESS RANGES
         SFR2             0100-010F             10           1
         SFR3             0180-018F             10           1
         STRCODE          0003-0003              1           2
-                         0080-1FFF           1F80
+                         007A-1FFF           1F86
         STRING           0003-0003              1           2
-                         0080-1FFF            100
+                         007A-1FFF            100
 
                                   Symbol Table
 
@@ -148,14 +148,12 @@ _PIR1bits                (abs)        000C
 _PORTA                   (abs)        0005
 _PORTBbits               (abs)        0006
 _PORTC                   (abs)        0007
-_PORTD                   (abs)        0008
 _SSPBUF                  (abs)        0013
 _SSPCONbits              (abs)        0014
 _SSPSTATbits             (abs)        0094
 _TRISA                   (abs)        0085
 _TRISBbits               (abs)        0086
 _TRISC                   (abs)        0087
-_TRISD                   (abs)        0088
 _WPUBbits                (abs)        0095
 __Habs1                  abs1         0000
 __Hbank0                 bank0        0000
@@ -183,7 +181,7 @@ __Hsfr0                  sfr0         0000
 __Hsfr1                  sfr1         0000
 __Hsfr2                  sfr2         0000
 __Hsfr3                  sfr3         0000
-__Hspace_0               (abs)        0080
+__Hspace_0               (abs)        007A
 __Hspace_1               (abs)        0076
 __Hspace_2               (abs)        0000
 __Hspace_3               (abs)        0000
@@ -225,7 +223,7 @@ __Lspace_4               (abs)        0000
 __Lstack                 stack        0000
 __Lstrings               strings      0000
 __Ltext                  text         0000
-__S0                     (abs)        0080
+__S0                     (abs)        007A
 __S1                     (abs)        0076
 __S3                     (abs)        0000
 ___int_sp                stack        0000
@@ -234,19 +232,19 @@ ___sp                    stack        0000
 ___stackhi               (abs)        0000
 ___stacklo               (abs)        0000
 __end_of__initialization cinit        0012
-__end_of_isr             text2        0077
-__end_of_main            maintext     0080
-__end_of_setup           text1        004F
+__end_of_isr             text2        0071
+__end_of_main            maintext     007A
+__end_of_setup           text1        0049
 __initialization         cinit        000F
 __pbssCOMMON             bssCOMMON    0070
 __pcstackCOMMON          cstackCOMMON 0073
 __pintentry              intentry     0004
-__pmaintext              maintext     0077
+__pmaintext              maintext     0071
 __ptext1                 text1        0016
-__ptext2                 text2        004F
+__ptext2                 text2        0049
 _cont_slave              bssCOMMON    0071
-_isr                     text2        004F
-_main                    maintext     0077
+_isr                     text2        0049
+_main                    maintext     0071
 _setup                   text1        0016
 _val_temp                bssCOMMON    0070
 btemp                    (abs)        007E
@@ -274,9 +272,9 @@ shared
 shared estimated size: 3
 
 mainL11_slave.c
-		_main          		CODE           	0077	0000	9
-		_isr           		CODE           	004F	0000	40
-		_setup         		CODE           	0016	0000	57
+		_main          		CODE           	0071	0000	9
+		_isr           		CODE           	0049	0000	40
+		_setup         		CODE           	0016	0000	51
 
-mainL11_slave.c estimated size: 106
+mainL11_slave.c estimated size: 100
 

@@ -63,38 +63,37 @@ void main(void) {
             ADCON0bits.GO = 1;  // Inicar proceso de conversión
         
         // cambio en el selector (SS) para generar respuesta del pic
-        PORTAbits.RA7 = 1;      // Deshabilitamos el ss del esclavo
+        PORTAbits.RA7 = 1;      // Deshabilitar el ss del esclavo 2 (servo)
         __delay_ms(10);         // Delay para que el PIC pueda detectar el cambio en el pin
-        PORTAbits.RA7 = 0;      // habilitamos nuevamente el escalvo
+        PORTAbits.RA7 = 0;      // Habilitar nuevamente el escalvo 2 (servo)
 
         // Enviar dato
-        SSPBUF = POT_valor;   // Cargamos valor del contador al buffer
-        while(!SSPSTATbits.BF){}// Esperamos a que termine el envio
+        SSPBUF = POT_valor;         // Cargar valor del potenciómetro al buffer
+        while(!SSPSTATbits.BF){}    // Esperar a que termine el envio
         
         // cambio en el selector (SS) para generar respuesta del pic
-        PORTAbits.RA6 = 1;      // Deshabilitamos el ss del esclavo
+        PORTAbits.RA6 = 1;      // Deshabilitar el ss del esclavo 1 (contador)
         __delay_ms(10);         // Delay para que el PIC pueda detectar el cambio en el pin
-        PORTAbits.RA6 = 0;      // habilitamos nuevamente el escalvo
+        PORTAbits.RA6 = 0;      // Habilitar nuevamente el escalvo 1 (contador)
 
-        PORTB = SSPBUF;         // Mostramos dato recibido en PORTD
+        PORTB = SSPBUF;         // Mostrar dato recibido en PORTB
         
-        __delay_ms(1000);       // Enviamos y pedimos datos cada 1 segundo
+        __delay_ms(1000);       // Enviar y recibir datos cada 1 segundo
     }
     return;
 }
 // CONFIGURACION ---------------------------------------------------------------
 void setup(void){
-    ANSEL = 0b1;
-    ANSELH = 0;
+    ANSEL = 0b1;                // AN0 como entrada
+    ANSELH = 0;                 // I/O digitales para el PORTB
     
-    TRISB = 0;
+    TRISB = 0;                  // PORTB como salida         
     PORTB = 0;
-    
-    TRISD = 0;
+    TRISD = 0;                  // PORTD como salida
     PORTD = 0;
     
-    TRISA = 0b1;
-    PORTA = 0;
+    TRISA = 0b1;                // RA0 como entrada
+    PORTA = 0;          
     
     OSCCONbits.IRCF = 0b100;    // 1MHz
     OSCCONbits.SCS = 1;         // Reloj interno
@@ -111,16 +110,16 @@ void setup(void){
     // Configuracion de SPI
     // Configs de Maestro
     
-    TRISC = 0b00010000;         // -> SDI entrada, SCK y SD0 como salida
+    TRISC = 0b00010000;         // SDI entrada, SCK y SD0 como salida
     PORTC = 0;
     
     // SSPCON <5:0>
-    SSPCONbits.SSPM = 0b0000;   // -> SPI Maestro, Reloj -> Fosc/4 (250kbits/s)
-    SSPCONbits.CKP = 0;         // -> Reloj inactivo en 0
-    SSPCONbits.SSPEN = 1;       // -> Habilitamos pines de SPI
+    SSPCONbits.SSPM = 0b0000;   // SPI Maestro, Reloj -> Fosc/4 (250kbits/s)
+    SSPCONbits.CKP = 0;         // Reloj inactivo en 0
+    SSPCONbits.SSPEN = 1;       // Habilitar pines de SPI
     // SSPSTAT<7:6>
-    SSPSTATbits.CKE = 1;        // -> Dato enviado cada flanco de subida
-    SSPSTATbits.SMP = 1;        // -> Dato al final del pulso de reloj
+    SSPSTATbits.CKE = 1;        // Dato enviado cada flanco de subida
+    SSPSTATbits.SMP = 1;        // Dato al final del pulso de reloj
     SSPBUF = cont_master;       // Enviamos un dato inicial
     
     // Configuración de interrupciones

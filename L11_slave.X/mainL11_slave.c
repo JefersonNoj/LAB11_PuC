@@ -42,16 +42,16 @@ void setup(void);
 // INTERRUPCIONES --------------------------------------------------------------
 void __interrupt() isr (void){
     if (PIR1bits.SSPIF){
-        val_temp = SSPBUF;
-        SSPBUF = cont_slave;
-        PIR1bits.SSPIF = 0;             // Limpiamos bandera de interrupci n?
+        val_temp = SSPBUF;      // Leer buffer
+        SSPBUF = cont_slave;    // Enviar valor del contador al master
+        PIR1bits.SSPIF = 0;     // Limpiar bandera de interrupción
     }
     
     if(INTCONbits.RBIF){        // Evaluar bandera de interrupción del PORTB
-        if(!INC_B)          // Evaluar boton de incremento
-            cont_slave++;            // Aumentar PORTA si el boton de incremento se presionó 
-        else if (!DEC_B)       // Evaluar boton de decremento (solo si no se presionó el de incrmento)
-            cont_slave--;            // Disminuir PORTA si el boton de decremento se presionó
+        if(!INC_B)              // Evaluar boton de incremento
+            cont_slave++;       // Aumentar contador si el boton de incremento se presionó 
+        else if (!DEC_B)        // Evaluar boton de decremento (solo si no se presionó el de incrmento)
+            cont_slave--;       // Disminuir contador si el boton de decremento se presionó
         INTCONbits.RBIF = 0;    // Limpiar bandera de interrupción del PORTB
     }
     return;
@@ -62,19 +62,15 @@ void main(void) {
     setup();
     while(1){        
         // Envio y recepcion de datos en maestro
-        //PORTD = cont_slave;
     }
     return;
 }
 // CONFIGURACION ---------------------------------------------------------------
 void setup(void){
-    ANSEL = 0;
+    ANSEL = 0;                  // I/O digitales
     ANSELH = 0;
     
-    TRISD = 0;
-    PORTD = 0;
-    
-    TRISA = 0b00100001;
+    TRISA = 0b00100000;         // RA5 (SS) como entrada
     PORTA = 0;
     
     TRISBbits.TRISB0 = 1;       // RB0 como entrada
@@ -92,17 +88,17 @@ void setup(void){
     PORTC = 0;
 
     // SSPCON <5:0>
-    SSPCONbits.SSPM = 0b0100;   // -> SPI Esclavo, SS hablitado
-    SSPCONbits.CKP = 0;         // -> Reloj inactivo en 0
-    SSPCONbits.SSPEN = 1;       // -> Habilitamos pines de SPI
+    SSPCONbits.SSPM = 0b0100;   // SPI Esclavo, SS hablitado
+    SSPCONbits.CKP = 0;         // Reloj inactivo en 0
+    SSPCONbits.SSPEN = 1;       // HabilitaR pines de SPI
     // SSPSTAT<7:6>
-    SSPSTATbits.CKE = 1;        // -> Dato enviado cada flanco de subida
-    SSPSTATbits.SMP = 0;        // -> Dato al final del pulso de reloj
+    SSPSTATbits.CKE = 1;        // Dato enviado cada flanco de subida
+    SSPSTATbits.SMP = 0;        // Dato al final del pulso de reloj
 
-    PIR1bits.SSPIF = 0;         // Limpiamos bandera de SPI
-    PIE1bits.SSPIE = 1;         // Habilitamos int. de SPI
-    INTCONbits.PEIE = 1;
-    INTCONbits.GIE = 1;
+    PIR1bits.SSPIF = 0;         // LimpiaR bandera de SPI
+    PIE1bits.SSPIE = 1;         // Habilitar int. de SPI
+    INTCONbits.PEIE = 1;        // Habilitar int. de periféricos
+    INTCONbits.GIE = 1;         // Habilitar int. globales
     INTCONbits.RBIE = 1;        // Habilitar interrupciones del PORTB
     IOCBbits.IOCB0 = 1;         // Habilitar interrpción On_change de RB0
     IOCBbits.IOCB1 = 1;         // Habilitar interrpción On_change de RB1

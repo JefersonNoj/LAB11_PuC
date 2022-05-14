@@ -10,12 +10,12 @@
  Intel Hex-file ranges:
   0h - 5h		(dist/default/production\L11_slave1.X.production.hex)
   8h - FE9h		(dist/default/production\L11_slave1.X.production.hex)
-  1A6Ah - 1FFFh		(dist/default/production\L11_slave1.X.production.hex)
+  1A76h - 1FFFh		(dist/default/production\L11_slave1.X.production.hex)
   4000h - 4007h		(dist/default/production\L11_slave1.X.production.hex)
   400Eh - 4011h		(dist/default/production\L11_slave1.X.production.hex)
  Unused ranges:
   6h - 7h
-  FEAh - 1A69h
+  FEAh - 1A75h
   2000h - 3FFFh
   4008h - 400Dh
 
@@ -282,8 +282,7 @@
 00000FD0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00000FE0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 -- -- -- -- -- --
 ----------------------------------------------------------
-00001A60 | -- -- -- -- -- -- -- -- -- -- H1 H1 H1 H1 H1 H1
-00001A70 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00001A70 | -- -- -- -- -- -- H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00001A80 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00001A90 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00001AA0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1

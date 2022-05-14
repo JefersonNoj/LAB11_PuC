@@ -51,7 +51,7 @@ unsigned short map(uint8_t val, uint8_t in_min, uint8_t in_max,
 // INTERRUPCIONES --------------------------------------------------------------
 void __interrupt() isr (void){
     if (PIR1bits.SSPIF){
-        val_temp = SSPBUF;
+        val_temp = SSPBUF;              // Leer buffer
         CCPR = map(val_temp, IN_MIN, IN_MAX, OUT_MIN, OUT_MAX); // Obtener valor del ancho de pulso
         CCPR1L = (uint8_t)(CCPR>>2);    // Guardar los 8 bits mas significativos en CPR1L
         CCP1CONbits.DC1B = CCPR & 0b11; // Guardar los 2 bits menos significativos en DC1B
@@ -66,19 +66,15 @@ void main(void) {
     setup();
     while(1){        
         // Envio y recepcion de datos en maestro
-        //PORTD = cont_master;
     }
     return;
 }
 // CONFIGURACION ---------------------------------------------------------------
 void setup(void){
-    ANSEL = 0;
+    ANSEL = 0;                  // I/O digitales
     ANSELH = 0;
     
-    TRISD = 0;
-    PORTD = 0;
-    
-    TRISA = 0b00100001;
+    TRISA = 0b00100000;         // RA5 (SS) como entrada
     PORTA = 0;  
     
     OSCCONbits.IRCF = 0b100;    // 1MHz
@@ -86,7 +82,7 @@ void setup(void){
     
     // PWM
     TRISCbits.TRISC2 = 1;       // Deshabilitar salida de CCP1
-    PR2 = 61;                     // Perido de 4 ms
+    PR2 = 61;                   // Perido de 4 ms
     
     // CCP1
     CCP1CON = 0;                // Apagar CCP1
@@ -97,7 +93,7 @@ void setup(void){
     
     // TMR2
     PIR1bits.TMR2IF = 0;        // Limpiar bandera de interrupcion del TMR2
-    T2CONbits.T2CKPS = 0b11;    // prescaler 1:16
+    T2CONbits.T2CKPS = 0b11;    // Prescaler 1:16
     T2CONbits.TMR2ON = 1;       // Encender TMR2
     while(!PIR1bits.TMR2IF);    // Esperar un cliclo del TMR2
     PIR1bits.TMR2IF = 0;        // Limpiar bandera de interrupcion del TMR2 nuevamente
@@ -110,17 +106,17 @@ void setup(void){
     PORTC = 0;
 
     // SSPCON <5:0>
-    SSPCONbits.SSPM = 0b0100;   // -> SPI Esclavo, SS hablitado
-    SSPCONbits.CKP = 0;         // -> Reloj inactivo en 0
-    SSPCONbits.SSPEN = 1;       // -> Habilitamos pines de SPI
+    SSPCONbits.SSPM = 0b0100;   // SPI Esclavo, SS hablitado
+    SSPCONbits.CKP = 0;         // Reloj inactivo en 0
+    SSPCONbits.SSPEN = 1;       // Habilitamos pines de SPI
     // SSPSTAT<7:6>
-    SSPSTATbits.CKE = 1;        // -> Dato enviado cada flanco de subida
-    SSPSTATbits.SMP = 0;        // -> Dato al final del pulso de reloj
+    SSPSTATbits.CKE = 1;        // Dato enviado cada flanco de subida
+    SSPSTATbits.SMP = 0;        // Dato al final del pulso de reloj
 
-    PIR1bits.SSPIF = 0;         // Limpiamos bandera de SPI
-    PIE1bits.SSPIE = 1;         // Habilitamos int. de SPI
-    INTCONbits.PEIE = 1;
-    INTCONbits.GIE = 1;
+    PIR1bits.SSPIF = 0;         // Limpiar bandera de SPI
+    PIE1bits.SSPIE = 1;         // Habilitar int. de SPI
+    INTCONbits.PEIE = 1;        // Habilitar int. de periféricos
+    INTCONbits.GIE = 1;         // Habilitar int. globales
     
     return;
 }

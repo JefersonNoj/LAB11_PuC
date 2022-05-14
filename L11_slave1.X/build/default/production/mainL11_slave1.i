@@ -2675,7 +2675,6 @@ void main(void) {
     setup();
     while(1){
 
-
     }
     return;
 }
@@ -2684,10 +2683,7 @@ void setup(void){
     ANSEL = 0;
     ANSELH = 0;
 
-    TRISD = 0;
-    PORTD = 0;
-
-    TRISA = 0b00100001;
+    TRISA = 0b00100000;
     PORTA = 0;
 
     OSCCONbits.IRCF = 0b100;
