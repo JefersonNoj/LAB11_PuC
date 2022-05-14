@@ -566,119 +566,128 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 147 ]
 [e $ ! != -> . . _SSPSTATbits 0 0 `i -> 0 `i 148  ]
 [e :U 149 ]
-"73
-[; ;mainL11_master.c: 73:         PORTB = SSPBUF;
-[e = _PORTB _SSPBUF ]
 "75
-[; ;mainL11_master.c: 75:         _delay((unsigned long)((1000)*(1000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+[; ;mainL11_master.c: 75:         PORTAbits.RA6 = 1;
+[e = . . _PORTAbits 0 6 -> -> 1 `i `uc ]
 "76
-[; ;mainL11_master.c: 76:     }
+[; ;mainL11_master.c: 76:         _delay((unsigned long)((10)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"77
+[; ;mainL11_master.c: 77:         PORTAbits.RA6 = 0;
+[e = . . _PORTAbits 0 6 -> -> 0 `i `uc ]
+"79
+[; ;mainL11_master.c: 79:         PORTB = SSPBUF;
+[e = _PORTB _SSPBUF ]
+"81
+[; ;mainL11_master.c: 81:         _delay((unsigned long)((1000)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"82
+[; ;mainL11_master.c: 82:     }
 }
 [e :U 143 ]
 [e $U 144  ]
 [e :U 145 ]
-"77
-[; ;mainL11_master.c: 77:     return;
+"83
+[; ;mainL11_master.c: 83:     return;
 [e $UE 142  ]
-"78
-[; ;mainL11_master.c: 78: }
+"84
+[; ;mainL11_master.c: 84: }
 [e :UE 142 ]
 }
-"80
-[; ;mainL11_master.c: 80: void setup(void){
+"86
+[; ;mainL11_master.c: 86: void setup(void){
 [v _setup `(v ~T0 @X0 1 ef ]
 {
 [e :U _setup ]
 [f ]
-"81
-[; ;mainL11_master.c: 81:     ANSEL = 0b1;
-[e = _ANSEL -> -> 1 `i `uc ]
-"82
-[; ;mainL11_master.c: 82:     ANSELH = 0;
-[e = _ANSELH -> -> 0 `i `uc ]
-"84
-[; ;mainL11_master.c: 84:     TRISB = 0;
-[e = _TRISB -> -> 0 `i `uc ]
-"85
-[; ;mainL11_master.c: 85:     PORTB = 0;
-[e = _PORTB -> -> 0 `i `uc ]
 "87
-[; ;mainL11_master.c: 87:     TRISD = 0;
-[e = _TRISD -> -> 0 `i `uc ]
+[; ;mainL11_master.c: 87:     ANSEL = 0b1;
+[e = _ANSEL -> -> 1 `i `uc ]
 "88
-[; ;mainL11_master.c: 88:     PORTD = 0;
-[e = _PORTD -> -> 0 `i `uc ]
+[; ;mainL11_master.c: 88:     ANSELH = 0;
+[e = _ANSELH -> -> 0 `i `uc ]
 "90
-[; ;mainL11_master.c: 90:     TRISA = 0b1;
-[e = _TRISA -> -> 1 `i `uc ]
+[; ;mainL11_master.c: 90:     TRISB = 0;
+[e = _TRISB -> -> 0 `i `uc ]
 "91
-[; ;mainL11_master.c: 91:     PORTA = 0;
-[e = _PORTA -> -> 0 `i `uc ]
+[; ;mainL11_master.c: 91:     PORTB = 0;
+[e = _PORTB -> -> 0 `i `uc ]
 "93
-[; ;mainL11_master.c: 93:     OSCCONbits.IRCF = 0b100;
-[e = . . _OSCCONbits 0 4 -> -> 4 `i `uc ]
+[; ;mainL11_master.c: 93:     TRISD = 0;
+[e = _TRISD -> -> 0 `i `uc ]
 "94
-[; ;mainL11_master.c: 94:     OSCCONbits.SCS = 1;
-[e = . . _OSCCONbits 0 0 -> -> 1 `i `uc ]
+[; ;mainL11_master.c: 94:     PORTD = 0;
+[e = _PORTD -> -> 0 `i `uc ]
+"96
+[; ;mainL11_master.c: 96:     TRISA = 0b1;
+[e = _TRISA -> -> 1 `i `uc ]
 "97
-[; ;mainL11_master.c: 97:     ADCON0bits.ADCS = 0b01;
-[e = . . _ADCON0bits 0 3 -> -> 1 `i `uc ]
-"98
-[; ;mainL11_master.c: 98:     ADCON1bits.VCFG0 = 0;
-[e = . . _ADCON1bits 0 1 -> -> 0 `i `uc ]
+[; ;mainL11_master.c: 97:     PORTA = 0;
+[e = _PORTA -> -> 0 `i `uc ]
 "99
-[; ;mainL11_master.c: 99:     ADCON1bits.VCFG1 = 0;
-[e = . . _ADCON1bits 0 2 -> -> 0 `i `uc ]
+[; ;mainL11_master.c: 99:     OSCCONbits.IRCF = 0b100;
+[e = . . _OSCCONbits 0 4 -> -> 4 `i `uc ]
 "100
-[; ;mainL11_master.c: 100:     ADCON0bits.CHS = 0b0000;
-[e = . . _ADCON0bits 0 2 -> -> 0 `i `uc ]
-"101
-[; ;mainL11_master.c: 101:     ADCON1bits.ADFM = 0;
-[e = . . _ADCON1bits 0 4 -> -> 0 `i `uc ]
-"102
-[; ;mainL11_master.c: 102:     ADCON0bits.ADON = 1;
-[e = . . _ADCON0bits 0 0 -> -> 1 `i `uc ]
+[; ;mainL11_master.c: 100:     OSCCONbits.SCS = 1;
+[e = . . _OSCCONbits 0 0 -> -> 1 `i `uc ]
 "103
-[; ;mainL11_master.c: 103:     _delay((unsigned long)((40)*(1000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 40 `i `d / -> -> 1000000 `l `d .4000000.0 `ul ]
+[; ;mainL11_master.c: 103:     ADCON0bits.ADCS = 0b01;
+[e = . . _ADCON0bits 0 3 -> -> 1 `i `uc ]
+"104
+[; ;mainL11_master.c: 104:     ADCON1bits.VCFG0 = 0;
+[e = . . _ADCON1bits 0 1 -> -> 0 `i `uc ]
+"105
+[; ;mainL11_master.c: 105:     ADCON1bits.VCFG1 = 0;
+[e = . . _ADCON1bits 0 2 -> -> 0 `i `uc ]
+"106
+[; ;mainL11_master.c: 106:     ADCON0bits.CHS = 0b0000;
+[e = . . _ADCON0bits 0 2 -> -> 0 `i `uc ]
+"107
+[; ;mainL11_master.c: 107:     ADCON1bits.ADFM = 0;
+[e = . . _ADCON1bits 0 4 -> -> 0 `i `uc ]
 "108
-[; ;mainL11_master.c: 108:     TRISC = 0b00010000;
-[e = _TRISC -> -> 16 `i `uc ]
+[; ;mainL11_master.c: 108:     ADCON0bits.ADON = 1;
+[e = . . _ADCON0bits 0 0 -> -> 1 `i `uc ]
 "109
-[; ;mainL11_master.c: 109:     PORTC = 0;
-[e = _PORTC -> -> 0 `i `uc ]
-"112
-[; ;mainL11_master.c: 112:     SSPCONbits.SSPM = 0b0000;
-[e = . . _SSPCONbits 0 0 -> -> 0 `i `uc ]
-"113
-[; ;mainL11_master.c: 113:     SSPCONbits.CKP = 0;
-[e = . . _SSPCONbits 0 1 -> -> 0 `i `uc ]
+[; ;mainL11_master.c: 109:     _delay((unsigned long)((40)*(1000000/4000000.0)));
+[e ( __delay (1 -> * -> -> 40 `i `d / -> -> 1000000 `l `d .4000000.0 `ul ]
 "114
-[; ;mainL11_master.c: 114:     SSPCONbits.SSPEN = 1;
-[e = . . _SSPCONbits 0 2 -> -> 1 `i `uc ]
-"116
-[; ;mainL11_master.c: 116:     SSPSTATbits.CKE = 1;
-[e = . . _SSPSTATbits 0 6 -> -> 1 `i `uc ]
-"117
-[; ;mainL11_master.c: 117:     SSPSTATbits.SMP = 1;
-[e = . . _SSPSTATbits 0 7 -> -> 1 `i `uc ]
+[; ;mainL11_master.c: 114:     TRISC = 0b00010000;
+[e = _TRISC -> -> 16 `i `uc ]
+"115
+[; ;mainL11_master.c: 115:     PORTC = 0;
+[e = _PORTC -> -> 0 `i `uc ]
 "118
-[; ;mainL11_master.c: 118:     SSPBUF = cont_master;
-[e = _SSPBUF -> _cont_master `uc ]
-"121
-[; ;mainL11_master.c: 121:     INTCONbits.GIE = 1;
-[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+[; ;mainL11_master.c: 118:     SSPCONbits.SSPM = 0b0000;
+[e = . . _SSPCONbits 0 0 -> -> 0 `i `uc ]
+"119
+[; ;mainL11_master.c: 119:     SSPCONbits.CKP = 0;
+[e = . . _SSPCONbits 0 1 -> -> 0 `i `uc ]
+"120
+[; ;mainL11_master.c: 120:     SSPCONbits.SSPEN = 1;
+[e = . . _SSPCONbits 0 2 -> -> 1 `i `uc ]
 "122
-[; ;mainL11_master.c: 122:     INTCONbits.PEIE = 1;
-[e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
+[; ;mainL11_master.c: 122:     SSPSTATbits.CKE = 1;
+[e = . . _SSPSTATbits 0 6 -> -> 1 `i `uc ]
 "123
-[; ;mainL11_master.c: 123:     PIE1bits.ADIE = 1;
-[e = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
+[; ;mainL11_master.c: 123:     SSPSTATbits.SMP = 1;
+[e = . . _SSPSTATbits 0 7 -> -> 1 `i `uc ]
 "124
-[; ;mainL11_master.c: 124:     PIR1bits.ADIF = 0;
+[; ;mainL11_master.c: 124:     SSPBUF = cont_master;
+[e = _SSPBUF -> _cont_master `uc ]
+"127
+[; ;mainL11_master.c: 127:     INTCONbits.GIE = 1;
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+"128
+[; ;mainL11_master.c: 128:     INTCONbits.PEIE = 1;
+[e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
+"129
+[; ;mainL11_master.c: 129:     PIE1bits.ADIE = 1;
+[e = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
+"130
+[; ;mainL11_master.c: 130:     PIR1bits.ADIF = 0;
 [e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
-"125
-[; ;mainL11_master.c: 125: }
+"131
+[; ;mainL11_master.c: 131: }
 [e :UE 150 ]
 }

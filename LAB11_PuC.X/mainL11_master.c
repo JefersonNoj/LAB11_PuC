@@ -70,6 +70,12 @@ void main(void) {
         // Enviar dato
         SSPBUF = POT_valor;   // Cargamos valor del contador al buffer
         while(!SSPSTATbits.BF){}// Esperamos a que termine el envio
+        
+        // cambio en el selector (SS) para generar respuesta del pic
+        PORTAbits.RA6 = 1;      // Deshabilitamos el ss del esclavo
+        __delay_ms(10);         // Delay para que el PIC pueda detectar el cambio en el pin
+        PORTAbits.RA6 = 0;      // habilitamos nuevamente el escalvo
+
         PORTB = SSPBUF;         // Mostramos dato recibido en PORTD
         
         __delay_ms(1000);       // Enviamos y pedimos datos cada 1 segundo

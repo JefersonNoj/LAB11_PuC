@@ -2655,7 +2655,7 @@ extern __bank0 __bit __timeout;
 # 26 "mainL11_slave.c" 2
 # 35 "mainL11_slave.c"
 char cont_master = 0;
-char cont_slave = 0xFF;
+char cont_slave = 0x0;
 char val_temp = 0;
 
 
@@ -2665,16 +2665,15 @@ void setup(void);
 void __attribute__((picinterrupt(("")))) isr (void){
     if (PIR1bits.SSPIF){
         val_temp = SSPBUF;
-        PORTD = val_temp;
-        SSPBUF = cont_master;
+        SSPBUF = cont_slave;
         PIR1bits.SSPIF = 0;
     }
 
     if(INTCONbits.RBIF){
         if(!PORTBbits.RB0)
-            cont_master++;
+            cont_slave++;
         else if (!PORTBbits.RB1)
-            cont_master--;
+            cont_slave--;
         INTCONbits.RBIF = 0;
     }
     return;

@@ -33,7 +33,7 @@
 
 // VARIABLES -------------------------------------------------------------------
 char cont_master = 0;
-char cont_slave = 0xFF;
+char cont_slave = 0x0;
 char val_temp = 0;
 
 // PROTOTIPO DE FUNCIONES ------------------------------------------------------
@@ -43,16 +43,15 @@ void setup(void);
 void __interrupt() isr (void){
     if (PIR1bits.SSPIF){
         val_temp = SSPBUF;
-        PORTD = val_temp;       // guardamos el dato en PORTD
-        SSPBUF = cont_master;
+        SSPBUF = cont_slave;
         PIR1bits.SSPIF = 0;             // Limpiamos bandera de interrupci n?
     }
     
     if(INTCONbits.RBIF){        // Evaluar bandera de interrupción del PORTB
         if(!INC_B)          // Evaluar boton de incremento
-            cont_master++;            // Aumentar PORTA si el boton de incremento se presionó 
+            cont_slave++;            // Aumentar PORTA si el boton de incremento se presionó 
         else if (!DEC_B)       // Evaluar boton de decremento (solo si no se presionó el de incrmento)
-            cont_master--;            // Disminuir PORTA si el boton de decremento se presionó
+            cont_slave--;            // Disminuir PORTA si el boton de decremento se presionó
         INTCONbits.RBIF = 0;    // Limpiar bandera de interrupción del PORTB
     }
     return;
@@ -63,7 +62,7 @@ void main(void) {
     setup();
     while(1){        
         // Envio y recepcion de datos en maestro
-        //PORTD = cont_master;
+        //PORTD = cont_slave;
     }
     return;
 }

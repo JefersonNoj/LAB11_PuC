@@ -2700,6 +2700,12 @@ void main(void) {
 
         SSPBUF = POT_valor;
         while(!SSPSTATbits.BF){}
+
+
+        PORTAbits.RA6 = 1;
+        _delay((unsigned long)((10)*(1000000/4000.0)));
+        PORTAbits.RA6 = 0;
+
         PORTB = SSPBUF;
 
         _delay((unsigned long)((1000)*(1000000/4000.0)));
